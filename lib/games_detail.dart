@@ -33,7 +33,8 @@ class GamesDetail extends StatelessWidget {
                           Icons.star_rate,
                           color: Colors.yellow[700],
                         ),
-                        Text(games.rating.toString())
+                        Text(games.rating.toString()),
+                        Likes()
                       ]),
                     )
                   ],
@@ -115,5 +116,31 @@ class GamesDetail extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class Likes extends StatefulWidget {
+  @override
+  _LikesState createState() => _LikesState();
+}
+
+class _LikesState extends State<Likes> {
+  bool isFavorite = false;
+  int jumlahFavorite = 0;
+  @override
+  Widget build(BuildContext context) {
+    return Row(children: [
+      IconButton(
+          icon: Icon(
+            isFavorite ? Icons.favorite : Icons.favorite_border,
+            color: Colors.red,
+          ),
+          onPressed: () {
+            setState(() {
+              isFavorite = !isFavorite;
+            });
+          }),
+      Text(isFavorite ? (jumlahFavorite + 1).toString() : "0")
+    ]);
   }
 }
